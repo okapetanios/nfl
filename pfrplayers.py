@@ -16,7 +16,8 @@ for i in range(len(alphabet_upper)):
     url = BASE_URL + "players/" + alphabet_upper[i] + "/"
     html = urlopen(url).read()
     soup = BeautifulSoup(html, "lxml")
-    f= open("players/players" + alphabet_upper[i] + ".txt","w+")
+
+    f= open("players/players" + alphabet_upper[i] + ".html","w+")
     f.write(soup.prettify())
 
 # html = urlopen(BASE_URL).read()

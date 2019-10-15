@@ -11,17 +11,9 @@ alphabet_upper = string.ascii_uppercase
 BASE_URL = "https://www.pro-football-reference.com/"
 
 
+html = urlopen(BASE_URL).read()
+soup = BeautifulSoup(html, "lxml")
 
-for i in range(len(alphabet_upper)):
-    url = BASE_URL + "players/" + alphabet_upper[i] + "/"
-    html = urlopen(url).read()
-    soup = BeautifulSoup(html, "lxml")
-    f= open("players/players" + alphabet_upper[i] + ".txt","w+")
-    f.write(soup.prettify())
-
-# html = urlopen(BASE_URL).read()
-# soup = BeautifulSoup(html, "lxml")
-
-# print(soup.prettify())
-# for x in soup.find_all('a'):
-#     print(x.get_text())
+print(soup.prettify())
+for x in soup.find_all('a'):
+    print(x.get_text())
