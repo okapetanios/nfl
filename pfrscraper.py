@@ -2,8 +2,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import csv
 import string
-import time
-import random
+
 
 # Get string of uppercase alphabet
 alphabet_upper = string.ascii_uppercase

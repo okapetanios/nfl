@@ -14,15 +14,17 @@ LOCAL_FILE = "players/"
 POSITION_SET = set()
 # Creates csv file
 playerscsv = csv.writer(open('nflplayers.csv', 'w'))
-playerscsv.writerow(['Name', 'Position', 'PFRLink', 'Active'])
+playerscsv.writerow(['Name', 'Position', 'link', 'Active'])
 
+# For every letter of the alphabet, goes through downloaded players[A-Z].html
+# pages and extracts player info to csv.
 for i in range(len(alphabet_upper)):
     f = open(LOCAL_FILE + "players" + alphabet_upper[i] + ".html","r")
     soup = BeautifulSoup(f, "lxml")
     section = soup.find(id='div_players')
     player_info = section.find_all('p')
     for player in player_info:
-        link = "pro-football-reference.com/" + player.a["href"]
+        link = "pro-football-reference.com" + player.a["href"]
         name = player.a.get_text().strip()
         
         try:
@@ -40,14 +42,4 @@ for i in range(len(alphabet_upper)):
         playerscsv.writerow([name, position, link, active])  
     f.close()
 
-# html = urlopen(BASE_URL).read()
-# soup = BeautifulSoup(html, "lxml")
-
-# print(soup.prettify())
-# for a in soup.find_all('a'):
-#     print(a.get_text())
-
-
-# div with player links
-# <div class="section_content" id="div_players">
 
